@@ -4,6 +4,8 @@ import android.media.MediaRecorder;
 import android.util.Log;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Praetorian on 24-02-2015.
@@ -12,7 +14,7 @@ public class SoundMeter {
 
     private MediaRecorder mRecorder = null;
 
-    public void start() {
+    public SoundMeter(){
         if (mRecorder == null) {
             mRecorder = new MediaRecorder();
             mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -27,11 +29,21 @@ public class SoundMeter {
             {
                 Log.e("SoundMeter",e.getMessage());
             }
-
         }
     }
 
-    public void stop() {
+    public void startSensor() {
+        Timer timer = new Timer();
+        TimerTask tt = new TimerTask() {
+            @Override
+            public void run() {
+                //HER SKAL DATABASE KALDET VÆRE getAmplitude();
+            }
+        };
+        timer.schedule(tt, 1000, 1000); //DENNE TID KAN ÆNDRES
+    }
+
+    public void stopSensor() {
         if (mRecorder != null) {
             mRecorder.stop();
             mRecorder.release();
@@ -44,6 +56,5 @@ public class SoundMeter {
             return  mRecorder.getMaxAmplitude();
         else
             return 0;
-
     }
 }

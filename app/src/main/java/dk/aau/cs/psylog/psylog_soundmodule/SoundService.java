@@ -13,56 +13,23 @@ import java.util.TimerTask;
  */
 public class SoundService extends Service{
     SoundMeter sm;
-    Timer timer;
-    private boolean isRunning;
-    public static boolean daState;
-
 
     @Override
     public int onStartCommand(Intent intent, int flag, int startid)
     {
-        if(!isRunning){
-            isRunning = true;
-            sm =  new SoundMeter();
-            timer = new Timer();
-            sm.start();
-            while(true)
-            {
-                Log.i("soundlevel", String.valueOf(sm.getAmplitude()) + " state:" + StateSingleton.getInstance().state);
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            /*
-            TimerTask tt = new TimerTask() {
-                @Override
-                public void run() {
-
-
-                }
-            };
-            timer.schedule(tt, 1000, 1000);*/
-
-        }
-
-        //Skal være START_STICKY hvis servicen skal køre hele tiden, selv hvis den bliver dræbt. START_NOT_STICKY hjælper når man programmere.
+        sm.startSensor();
         return Service.START_NOT_STICKY;
     }
 
     @Override
     public void onCreate(){
         super.onCreate();
-        isRunning = false;
-
+        sm =  new SoundMeter();
     }
 
     @Override
     public void onDestroy(){
-        timer.cancel();
-        timer.purge();
-        sm.stop();
+        sm.stopSensor();
         //Make sure to stop the sensors that have started
     }
 
