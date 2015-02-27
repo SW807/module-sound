@@ -31,13 +31,16 @@ public class SoundMeter {
             }
         }
     }
-
+    Timer timer;
     public void startSensor() {
-        Timer timer = new Timer();
+       if(timer == null)
+       {
+           timer = new Timer();
+       }
         TimerTask tt = new TimerTask() {
             @Override
             public void run() {
-                //HER SKAL DATABASE KALDET VÆRE getAmplitude();
+                Log.i("DATSHIT", "ampl: " + getAmplitude());
             }
         };
         timer.schedule(tt, 1000, 1000); //DENNE TID KAN ÆNDRES
@@ -49,6 +52,8 @@ public class SoundMeter {
             mRecorder.release();
             mRecorder = null;
         }
+        timer.cancel();
+        timer.purge();
     }
 
     public double getAmplitude() {
