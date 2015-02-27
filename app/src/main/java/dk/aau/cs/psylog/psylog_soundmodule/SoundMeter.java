@@ -13,8 +13,10 @@ import java.util.TimerTask;
 public class SoundMeter {
 
     private MediaRecorder mRecorder = null;
+    private Timer timer;
+    private TimerTask timerTask;
 
-    public SoundMeter(){
+    public SoundMeter() {
         if (mRecorder == null) {
             mRecorder = new MediaRecorder();
             mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -24,26 +26,26 @@ public class SoundMeter {
             try {
                 mRecorder.prepare();
                 mRecorder.start();
-            }
-            catch (IOException e)
-            {
-                Log.e("SoundMeter",e.getMessage());
+            } catch (IOException e) {
+                Log.e("SoundMeter", e.getMessage());
             }
         }
-    }
-    Timer timer;
-    public void startSensor() {
-       if(timer == null)
-       {
-           timer = new Timer();
-       }
-        TimerTask tt = new TimerTask() {
+
+        timerTask = new TimerTask() {
             @Override
             public void run() {
                 Log.i("DATSHIT", "ampl: " + getAmplitude());
             }
         };
-        timer.schedule(tt, 1000, 1000); //DENNE TID KAN ÆNDRES
+    }
+
+
+
+    public void startSensor() {
+        if (timer == null) {
+            timer = new Timer();
+        }
+        timer.schedule(timerTask, 1000, 1000); //DENNE TID KAN ÆNDRES
     }
 
     public void stopSensor() {
@@ -58,7 +60,7 @@ public class SoundMeter {
 
     public double getAmplitude() {
         if (mRecorder != null)
-            return  mRecorder.getMaxAmplitude();
+            return mRecorder.getMaxAmplitude();
         else
             return 0;
     }

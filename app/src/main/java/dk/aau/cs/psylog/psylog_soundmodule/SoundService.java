@@ -11,24 +11,23 @@ import java.util.TimerTask;
 /**
  * Created by Praetorian on 24-02-2015.
  */
-public class SoundService extends Service{
+public class SoundService extends Service {
     SoundMeter sm;
 
     @Override
-    public int onStartCommand(Intent intent, int flag, int startid)
-    {
+    public int onStartCommand(Intent intent, int flag, int startid) {
         sm.startSensor();
         return Service.START_NOT_STICKY;
     }
 
     @Override
-    public void onCreate(){
+    public void onCreate() {
         super.onCreate();
-        sm =  new SoundMeter();
+        sm = new SoundMeter();
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         sm.stopSensor();
         //Make sure to stop the sensors that have started
     }
