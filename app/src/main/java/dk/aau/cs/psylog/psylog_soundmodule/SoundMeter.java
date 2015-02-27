@@ -6,11 +6,9 @@ import android.util.Log;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+import dk.aau.cs.psylog.module_lib.ISensor;
 
-/**
- * Created by Praetorian on 24-02-2015.
- */
-public class SoundMeter {
+public class SoundMeter implements ISensor {
 
     private MediaRecorder mRecorder = null;
     private Timer timer;
