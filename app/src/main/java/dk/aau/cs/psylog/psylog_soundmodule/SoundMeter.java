@@ -1,5 +1,6 @@
 package dk.aau.cs.psylog.psylog_soundmodule;
 
+import android.content.Intent;
 import android.media.MediaRecorder;
 import android.util.Log;
 
@@ -13,6 +14,9 @@ public class SoundMeter implements ISensor {
     private MediaRecorder mRecorder = null;
     private Timer timer;
     private TimerTask timerTask;
+
+    private long delay;
+    private long period;
 
     public SoundMeter() {
         if (mRecorder == null) {
@@ -43,7 +47,8 @@ public class SoundMeter implements ISensor {
         if (timer == null) {
             timer = new Timer();
         }
-        timer.schedule(timerTask, 1000, 1000); //DENNE TID KAN ÆNDRES
+        // skal muligvis stoppes inden reschedule
+        timer.schedule(timerTask, delay, period);
     }
 
     public void stopSensor() {
@@ -54,6 +59,12 @@ public class SoundMeter implements ISensor {
         }
         timer.cancel();
         timer.purge();
+    }
+
+    @Override
+    public void sensorParameters(Intent intent) {
+        period = intent.getIntExtra("period",0);
+        delay = intent.getIntExtra("delay",100000);
     }
 
     public double getAmplitude() {
