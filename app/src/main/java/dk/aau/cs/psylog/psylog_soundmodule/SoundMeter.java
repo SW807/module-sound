@@ -63,8 +63,8 @@ public class SoundMeter implements ISensor {
 
     @Override
     public void sensorParameters(Intent intent) {
-        period = intent.getIntExtra("period",0);
-        delay = intent.getIntExtra("delay",100000);
+        period = intent.getIntExtra("period",1000);
+        delay = intent.getIntExtra("delay",0);
     }
 
     public double getAmplitude() {
