@@ -1,0 +1,12 @@
+{
+	"name": "sound",
+	"_version": 1.0,
+	"tables": [
+		{
+			"name": "amplitudes",
+			"columns": [
+				{ "name": "amplitude", "dataType": "REAL", "_unit": "value between 0 and 32,767" }
+			]
+		}
+	]
+}
