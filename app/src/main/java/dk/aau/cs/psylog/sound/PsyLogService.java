@@ -1,4 +1,4 @@
-package dk.aau.cs.psylog.psylog_soundmodule;
+package dk.aau.cs.psylog.sound;
 
 import dk.aau.cs.psylog.module_lib.SuperService;
 

@@ -1,4 +1,4 @@
-package dk.aau.cs.psylog.psylog_soundmodule;
+package dk.aau.cs.psylog.sound;
 
 import android.content.Intent;
 import android.media.MediaRecorder;
