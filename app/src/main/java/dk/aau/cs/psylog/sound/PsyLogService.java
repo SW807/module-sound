@@ -5,6 +5,6 @@ import dk.aau.cs.psylog.module_lib.SuperService;
 public class PsyLogService extends SuperService {
     @Override
     public void setSensor() {
-        sensor = new SoundMeter();
+        sensor = new SoundMeter(this);
     }
 }

@@ -1,7 +1,11 @@
 package dk.aau.cs.psylog.sound;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaRecorder;
+import android.net.Uri;
 import android.util.Log;
 
 import java.io.IOException;
@@ -18,7 +22,10 @@ public class SoundMeter implements ISensor {
     private long delay;
     private long period;
 
-    public SoundMeter() {
+    private ContentResolver resolver;
+
+    public SoundMeter(Context context) {
+        resolver = context.getContentResolver();
         if (mRecorder == null) {
             mRecorder = new MediaRecorder();
             mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -36,7 +43,11 @@ public class SoundMeter implements ISensor {
         timerTask = new TimerTask() {
             @Override
             public void run() {
-                Log.i("DATSHIT", "ampl: " + getAmplitude());
+                double ampl =  getAmplitude();
+                Uri uri = Uri.parse("content://dk.aau.cs.psylog.psylog" + "/amplitudes");
+                ContentValues values = new ContentValues();
+                values.put("amplitude", ampl);
+                resolver.insert(uri, values);
             }
         };
     }
