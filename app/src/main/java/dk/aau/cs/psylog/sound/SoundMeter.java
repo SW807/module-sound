@@ -7,10 +7,10 @@ import android.content.Intent;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.util.Log;
-
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+import dk.aau.cs.psylog.module_lib.DBAccessContract;
 import dk.aau.cs.psylog.module_lib.ISensor;
 
 public class SoundMeter implements ISensor {
