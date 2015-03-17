@@ -1,4 +1,4 @@
-package dk.aau.cs.psylog.sound;
+package dk.aau.cs.psylog.sensor.sound;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;

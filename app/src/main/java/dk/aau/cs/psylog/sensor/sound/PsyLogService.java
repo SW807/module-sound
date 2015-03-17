@@ -1,4 +1,4 @@
-package dk.aau.cs.psylog.sound;
+package dk.aau.cs.psylog.sensor.sound;
 
 import dk.aau.cs.psylog.module_lib.SensorService;
 
