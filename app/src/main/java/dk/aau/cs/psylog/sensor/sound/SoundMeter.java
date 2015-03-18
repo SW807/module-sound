@@ -44,7 +44,7 @@ public class SoundMeter implements ISensor {
             @Override
             public void run() {
                 double ampl =  getAmplitude();
-                Uri uri = Uri.parse(DBAccessContract.DBACCESS_CONTENTPROVIDER + "amplitudes");
+                Uri uri = Uri.parse(DBAccessContract.DBACCESS_CONTENTPROVIDER + "sound_amplitudes");
                 ContentValues values = new ContentValues();
                 values.put("amplitude", ampl);
                 resolver.insert(uri, values);
