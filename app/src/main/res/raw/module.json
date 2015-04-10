@@ -1,5 +1,6 @@
 {
 	"name": "sound",
+    "_userfriendlyname": "Lyd sensor",
 	"_version": 1.0,
     "_description": "Måler og opbevarer lyd niveau.",
 	"tables": [
