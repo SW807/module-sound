@@ -65,6 +65,7 @@ public class SoundMeter implements ISensor {
     public void stopSensor() {
         if (mRecorder != null) {
             mRecorder.stop();
+            mRecorder.reset();
             mRecorder.release();
             mRecorder = null;
         }
